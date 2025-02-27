@@ -6,13 +6,13 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/02/25 15:25:35 by poverbec         ###   ########.fr        #
+#    Updated: 2025/02/27 16:31:40 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 
-# MLX 		=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
+
 
 
 # CFLAGS			= -Wall -Werror -Wextra -Wunreachable-code -Ofast -ffast-math -march=native -mtune=native -funroll-loops #-lm
@@ -27,8 +27,10 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
-MLX_NAME =	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
-
+MLX_NAME =	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# MLX_NAME =	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
+MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
 SOURCE_DIR = src/
 OBJ_DIR = obj/
 BIN_DIR = bin/
@@ -76,6 +78,9 @@ $(NAME): checkMLX $(MY_OBJECTS) $(LIBFT)
 
 $(LIBFT):
 	make -C ./libft
+
+test: CFLAGS = -g
+test: $(NAME)
 
 checkMLX:
 	@if	[ ! -d "$(MLX_DIR)" ];	then	\
