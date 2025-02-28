@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/02/27 16:31:40 by poverbec         ###   ########.fr        #
+#    Updated: 2025/02/28 10:10:13 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ BIN_DIR = bin/
 # ---------- Subjects ---------- #
 MY_SOURCES = \
 			$(SOURCE_DIR)main.c \
+			$(SOURCE_DIR)fill_map.c \
 			$(SOURCE_DIR)helper.c 
 			
 			

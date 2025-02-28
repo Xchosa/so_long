@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/02/27 15:36:27 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:27:57 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,52 +41,38 @@ int check_input(int argc)
 {
 	if (argc != 2)
 		exit(EXIT_FAILURE);
+	// .ber datei
 	else
 		return(EXIT_SUCCESS);
 }
 
-void	get_map(char *map_name, t_game *game)
+void	validate_map()
 {
-	int fd;
-	char *map_line;
-	char *joined_line;
-	joined_line = "";
-	
-	
-	game->y = 1;
-	fd = open(map_name, O_RDONLY );
-	if(!fd)
-		exit(EXIT_FAILURE);
-	map_line = get_next_line(fd);
-	while (map_line != NULL)
-	{
-		joined_line = ft_strjoin(joined_line, map_line);
-		free(map_line);
-		map_line = get_next_line(fd);
-		game->y++;
-		
-	}
-	game->map = ft_split(joined_line, '\n');
-	
-	ft_printf("%s\n",joined_line);
-	game->x = ft_strlen(game->map[0]);
-	free(joined_line);
-	// print_split(game->map);
+	// raender alle 1
+	// mind 1 collectiv
+	// ein exit 
+	// rechteckig - jede zeile und spalte gleich lang 
+	// valid path yum collectiv und ziel
+	// flood fill zum pruefen 
 }
 
 
 
-void	ft_escape_key(mlx_key_data_t keydata, void* param)
+
+
+void	ft_escape_key(mlx_key_data_t keydata, void *param)
 {
 	
 	// param - das bild was jedes mal neu reingegeben wird 
-	(void) param;
-	// if(keydata.key == MLX_KEY_UP && keydata.action == MLX_RELEASE)
-	// 	fractol->img->width += 5;
+	 (void) param;
+	// // if(keydata.key == MLX_KEY_UP && keydata.action == MLX_RELEASE)
+	// // 	fractol->img->width += 5;
 	// if(keydata.key == MLX_KEY_DOWN && keydata.action == MLX_RELEASE)
-	// 	fractol->img->height + 5;
+		// image..img->height ;
+	
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		exit(1);
 	}
 }
+
