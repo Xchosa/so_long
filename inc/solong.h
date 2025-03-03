@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/03 12:04:41 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:00:05 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ typedef struct s_img
 void	print_split(char **str);
 void	ft_free_split(char **str);
 int		check_input(int argc);
-int		validate_map(t_game game);
+void	validate_map(t_game game);
+int		validate_edges_and_rect(t_game game, int x_max, int y_max, int x, int y);
 
 void 	get_map(char *map_name, t_game *game);
 int		validate_characters_general(char *joined_line);
