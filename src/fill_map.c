@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/02/28 14:42:54 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:16:13 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	get_map(char *map_name, t_game *game)
 	char *map_line;
 	char *joined_line;
 	joined_line = "";
-	
-	
 	game->y = 0;
 	fd = open(map_name, O_RDONLY );
 	if(!fd)
@@ -32,14 +30,14 @@ void	get_map(char *map_name, t_game *game)
 		free(map_line);
 		map_line = get_next_line(fd);
 		game->y++;
-		
 	}
 	game->map = ft_split(joined_line, '\n');
 	
 	ft_printf("%s\n",joined_line);
 	game->x = ft_strlen(game->map[0]);
+	if (validate_characters_general(joined_line))
+		exit(ft_printf("wrong argument"));
 	free(joined_line);
-	// print_split(game->map);
 }
 
 

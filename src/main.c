@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:18:41 by poverbec          #+#    #+#             */
-/*   Updated: 2025/02/28 16:29:06 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:30:35 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int main(int argc, char **argv)
 	
 	check_input(argc);
 	if(!&check_input)
-		exit(ft_printf("Wrong input:"));
+		exit(ft_printf("Wrong input 1:"));
+	// ft_printf("check seq \n");
 	get_map(argv[1], &game);
-	validate_map(game); 
+	int validate = validate_map(game);
+		ft_printf("invalid map %d", validate);
+	ft_printf("check seq");
 	fill_map(&game, &image, &texture);
 	 
 	mlx_key_hook(game.mlx, &ft_escape_key, &game);

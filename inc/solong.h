@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/02/28 16:30:38 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:04:41 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		check_input(int argc);
 int		validate_map(t_game game);
 
 void 	get_map(char *map_name, t_game *game);
+int		validate_characters_general(char *joined_line);
 void	fill_map(t_game *game, t_img *image, t_texture *texture);
 void	fill_texture_image(t_texture *texture, t_img *image, t_game *game);
 //void	fill_map(t_game *game);
