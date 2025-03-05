@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 13:23:04 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:41:42 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_game
 	int		y;
 	int 	player_start[2];
 	int		collectables;
+	int		collectables_check;
+	bool	map_exit;
 }	t_game;
 
 typedef struct s_texture

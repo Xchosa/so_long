@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/05 14:21:35 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/05 16:31:15 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ MY_SOURCES = \
 			$(SOURCE_DIR)main.c \
 			$(SOURCE_DIR)fill_map.c \
 			$(SOURCE_DIR)validate_map.c \
+			$(SOURCE_DIR)validate_path.c \
 			$(SOURCE_DIR)helper.c 
 			
 			
@@ -106,6 +107,10 @@ fclean: clean
 	make -C libft fclean
 
 re: fclean all
+
+#norm:
+#	@cd src && norminette | grep "Error:" | wc -l
+#norminette: norm
 
 f: fclean
 f: CFLAGS += -g -fsanitize=address

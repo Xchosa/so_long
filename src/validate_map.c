@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 13:23:40 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:39:09 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,5 @@ void validate_map(t_game game)
 	// valid path yum collectiv und ziel
 	// flood fill zum pruefen 
 	
-	// validate_path(&game, y_max, x_max);
+	validate_path(&game, y_max, x_max);
 }

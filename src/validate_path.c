@@ -6,10 +6,12 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 11:05:27 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:48:53 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/solong.h"
+#include "../mlx/include/MLX42/MLX42.h"
 
 
 // raender alle 1 check 
@@ -44,30 +46,38 @@
 
 
 
-// void	flood_fill(t_game *game, int *start_of_player)
-// {
-// 	// start_point  uebergeben;
-// 	int x = game->player_start[1];
-// 	int y = game->player_start[0];
+void	flood_fill(t_game *game, int *start_of_player)
+{
+	// start_point  uebergeben;
+	int x = game->player_start[1];
+	int y = game->player_start[0];
 	
-// 	// zwei zu fill 
-// 	// check if Exit has neigbouring F
-// 	// ft_printf("x.game %d ", game.x);
-// 	if (game.y < 0 || game.y >= y_max || game.x < 0 || game.x >= x_max
-// 		|| game.map[x][y] != '0'  || game.map[x][y] != 'C')
-// 		return ;
-// 	game.map[x][y] = 'F';// filled 
+	// zwei zu fill 
+	// check if Exit has neigbouring F
+	// ft_printf("x.game %d ", game.x);
+	if ((game->copy_map[y][x] == 'X') || (game->copy_map[y][x] == '1'))
+		return ;
+	if (game->copy_map[y][x] == 'E')
+	{
+		game->map_exit == true;
+		return ;
+	}
+	if (game->copy_map[y][x] == 'C')
+		game->collectables_check++;
+	game->copy_map[y][x] == 'X';
 	
-// 	// collect collectibles 
-// 	fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
-// 	fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
-// 	fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
-// 	fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
-// }
+	// collect collectibles 
+	floodfill(x, y + 1, game);
+	floodfill(x, y - 1, game);
+	floodfill(x + 1, y, game);
+	floodfill(x -1, y, game);
+}
 
-// void	validate_path(t_game *game, int y_max, int x_max)
-// {
-// 	ft_printf("x.game %d ", game->x);
-// 	flood_fill(game, game->player_start);
+void	validate_path(t_game *game, int y_max, int x_max)
+{
+	ft_printf("x.game %d ", game->x);
+	flood_fill(game, game->player_start);
+	if ((game->collectables) != (game.
 	
-// }
+	
+}
