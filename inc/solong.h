@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/03 16:48:16 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:49:59 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_game
 {
 	mlx_t	*mlx;
 	char	**map;
-	char	**copy_start;
+	char	**copy_map;
 	int		x;
 	int		y;
 	int 	player_start[2];
