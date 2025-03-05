@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/03 16:49:59 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:23:04 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_game
 	int		x;
 	int		y;
 	int 	player_start[2];
+	int		collectables;
 }	t_game;
 
 typedef struct s_texture
@@ -90,12 +91,14 @@ void	print_split(char **str);
 void	ft_free_split(char **str);
 int		check_input(int argc);
 void	validate_map(t_game game);
-int		validate_edge(t_game game, int x_max, int y_max);
-void	validate_rectangular(t_game game, int y_max);
+bool	validate_edge(t_game game, int x_max, int y_max);
+bool	validate_rectangular(t_game game, int y_max);
+void	validate_characters_general(char *joined_line);
 void	validate_path(t_game *game, int y_max, int x_max);
+void	count_player(char *map_as_string);
+int		count_collectables(char *game_as_string);
 
 void 	get_map(char *map_name, t_game *game);
-int		validate_characters_general(char *joined_line);
 void	fill_map(t_game *game, t_img *image, t_texture *texture);
 void	fill_texture_image(t_texture *texture, t_img *image, t_game *game);
 //void	fill_map(t_game *game);

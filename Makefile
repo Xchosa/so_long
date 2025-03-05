@@ -6,20 +6,9 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/03 13:30:52 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/05 13:25:35 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-
-
-
-
-
-# CFLAGS			= -Wall -Werror -Wextra -Wunreachable-code -Ofast -ffast-math -march=native -mtune=native -funroll-loops #-lm
-# all: mlx ${NAME}
-
-# ${NAME}: $(OBJECTS)
-# 	${CC} ${CFLAGS} -o ${NAME} $(OBJECTS) $(LIBFT) $(MLX)
 
 
 NAME 	= so_long
@@ -27,11 +16,14 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
+
+
+# ---------- McOS compiling ---------- #
 MLX_NAME =	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
-# MLX_NAME =	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
 MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
-# MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast -ffast-math -march=native -mtune=native -funroll-loops
-SOURCE_DIR = src/
+
+# ---------- Linux compiling ---------- #
+
 OBJ_DIR = obj/
 BIN_DIR = bin/
 
