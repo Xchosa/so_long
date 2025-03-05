@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/05 13:25:35 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/05 14:21:35 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 OBJ_DIR = obj/
 BIN_DIR = bin/
-
+SOURCE_DIR = src/
 
 # ---------- Subjects ---------- #
 MY_SOURCES = \
