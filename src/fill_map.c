@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 12:56:40 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:06:09 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ void	get_map(char *map_name, t_game *game)
 		game->y++;
 	}
 	validate_characters_general(joined_line);// exit and frees if fail
-	// ft_printf("check seq 2");
 	ft_printf("%s\n",joined_line);
 	game->map = ft_split(joined_line, '\n'); // 
 	game->copy_map = ft_split(joined_line, '\n');
 	game->collectables = count_collectables(joined_line);
-	
+	game->exit_unlocked = exit_unlocked(game); 
 	game->x = ft_strlen(game->map[0]);
 	free(joined_line);
 }
@@ -91,11 +90,3 @@ void fill_map(t_game *game, t_img *image, t_texture *texture)
 		y++;
 	}
 }
-
-
-
-// void fill_x_y(t_game *game, int x, int y)
-// {
-// 	if(game->map[y][x]== WALL)
-// 		mlx_image_to_window(game->mlx, img, x * Pixel, y * Pixel);
-// }

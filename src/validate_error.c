@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   validate_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 10:45:40 by poverbec         ###   ########.fr       */
+/*   Created: 2025/03/06 09:39:34 by poverbec          #+#    #+#             */
+/*   Updated: 2025/03/06 12:23:35 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,16 @@
 #include "../mlx/include/MLX42/MLX42.h"
 
 
-void ft_free_split(char **str)
+void validate_error_map(char *error_msg, t_game game)
 {
-	int i;
-	i = 0;
-	while(*str[i])
-	{
-		free(str[i]);
-		i++;
-	}
+	// ft_free_split(game.copy_map);
+	// ft_free_split(game.map);
+	// free of player_start ? 
+	(void)game;
+	ft_putendl_fd("error", STDERR_FILENO);
+	ft_putendl_fd(error_msg, STDERR_FILENO);
+	exit(1);
+	
 }
-
-void print_split(char **str)
-{
-	ft_printf("%s", str[0]);
-	// int i;
-	// i = 0;
-	// while(str[i])
-	// {
-	// 	ftprintf("%s\n", str[i]);
-	// 	i++;
-	// }
-}
-
-int check_input(int argc)
-{
-	if (argc != 2)
-		exit(EXIT_FAILURE);
-	// .ber datei
-	else
-		return(EXIT_SUCCESS);
-}
-
 
 

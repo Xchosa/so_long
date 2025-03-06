@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 16:39:09 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:11:17 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ void count_player(char *map_as_string)
 		exit(ft_printf("error/n %d player found", count_player));
 	}
 }
-void find_start(t_game game)
+void find_start(t_game *game)
 {
 	int y = 0;
 	int x;
-	while(game.map[y])
+	while(game->map[y])
 	{
 		x = 0;
-		while(game.map[y][x])
+		while(game->map[y][x])
 		{
-			if(game.map[y][x] == 'P')
+			if(game->map[y][x] == 'P')
 			{
-				game.player_start[0] = y;
-				game.player_start[1] = x;
+				game->player_start_yx[0] = y;
+				game->player_start_yx[1] = x;
 				return;
 			}
 			x++;
@@ -94,6 +94,15 @@ int count_collectables(char *game_as_string)
 	return(count_collectables);
 }
 
+bool exit_unlocked(t_game *game)
+{
+	bool	exit_unlocked;
+	exit_unlocked = false;
+	if (game->collectables == 0)
+		exit_unlocked = true;
+	return (exit_unlocked);
+}
+
 bool	validate_edge(t_game game, int x_max, int y_max)
 {
 	int x;
@@ -106,7 +115,6 @@ bool	validate_edge(t_game game, int x_max, int y_max)
 	{
 		if((game.map[y][0] != '1') || (game.map[y][x_max-1]) != '1')
 		{
-			ft_printf("error \nmap wall ");
 			return(bool_edges = false);
 		}
 		y++;
@@ -115,7 +123,6 @@ bool	validate_edge(t_game game, int x_max, int y_max)
 	{
 		if(((game.map[0][x]) != '1') || (game.map[y_max-1][x] != '1'))
 		{
-			ft_printf("error \nmap wall\n");
 			return(bool_edges = false);
 		}
 		x++;
@@ -138,13 +145,13 @@ bool	validate_rectangular(t_game game, int y_max )
 		current_row_length = ft_strlen(game.map[y]);
 		if (current_row_length !=  first_row_length)
 		{
-			ft_printf("error\n Map not rectangular");
 			return(bool_rectangular = false);
 		}
 		y++;
 	}
 	return (bool_rectangular);
 }
+
 
 void validate_map(t_game game)
 {
@@ -154,14 +161,12 @@ void validate_map(t_game game)
 	y_max = game.y;
 	game.x = 0;
 	game.y = 0;
-	find_start(game);
-	validate_rectangular(game, y_max);
-	if ((validate_edge(game, x_max, y_max) == false) || (validate_rectangular(game, y_max) == false))
-	{
-		// free(&game);
-	}
-	// valid path yum collectiv und ziel
-	// flood fill zum pruefen 
-	
-	validate_path(&game, y_max, x_max);
+	find_start(&game);
+	game.moves_nbr = 0;
+	if ((validate_edge(game, x_max, y_max) == false))
+		validate_error_map("Map is not surrounded by walls", game);
+	if (validate_rectangular(game, y_max) == false)
+		validate_error_map("Map is not rectangular", game);
+	validate_path(&game);
+	// error handling in the function. 
 }

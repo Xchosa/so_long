@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:18:41 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 12:55:56 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:05:54 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	get_map(argv[1], &game);
 	validate_map(game);
 	fill_map(&game, &image, &texture);
-	 
+	
 	mlx_key_hook(game.mlx, &ft_escape_key, &game);
 	//mlx_key_hook()
 	mlx_loop(game.mlx);

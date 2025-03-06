@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/05 16:41:42 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:10:41 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,13 @@ typedef struct s_game
 	char	**copy_map;
 	int		x;
 	int		y;
-	int 	player_start[2];
+	int 	player_start_yx[2];
+	int		new_player_yx[2];
 	int		collectables;
 	int		collectables_check;
 	bool	map_exit;
+	bool	exit_unlocked;
+	int		moves_nbr;
 }	t_game;
 
 typedef struct s_texture
@@ -96,7 +99,8 @@ void	validate_map(t_game game);
 bool	validate_edge(t_game game, int x_max, int y_max);
 bool	validate_rectangular(t_game game, int y_max);
 void	validate_characters_general(char *joined_line);
-void	validate_path(t_game *game, int y_max, int x_max);
+void	validate_path(t_game *game);
+bool	exit_unlocked(t_game *game);
 void	count_player(char *map_as_string);
 int		count_collectables(char *game_as_string);
 
@@ -104,7 +108,11 @@ void 	get_map(char *map_name, t_game *game);
 void	fill_map(t_game *game, t_img *image, t_texture *texture);
 void	fill_texture_image(t_texture *texture, t_img *image, t_game *game);
 //void	fill_map(t_game *game);
+void	flood_fill(t_game *game, int y, int x);
 
 void	ft_escape_key(mlx_key_data_t keydata, void* param);
+void	move_player_y_x(int y, int x, t_game game);
 
+
+void	validate_error_map(char *error_msg, t_game game);
 #endif
