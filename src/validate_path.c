@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 12:58:02 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:41:21 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	validate_path(t_game *game)
 	game->map_exit = false;
 	ft_printf("count collectables %d \n", game->collectables);
 	ft_printf("position player x %d \n", game->collectables_check);
-	flood_fill(game, game->player_start[0], game->player_start[1]);
+	flood_fill(game, game->player_start_yx[0], game->player_start_yx[1]);
 	if ((game->collectables) != (game->collectables_check))
 	{
 		validate_error_map("Not all collectables are reachable", *game);
@@ -60,5 +60,9 @@ void	validate_path(t_game *game)
 	}
 }
 
+if (game->map[y][x] == BACKGROUND)
+	mlx_image_to_window(game->mlx, image->background, x * Pixel, y * Pixel);
+if (game->map[y][x] == PLAYER)
+				mlx_image_to_window(game->mlx, image->spirit, x * Pixel, y * Pixel);
 
 // for keyhook

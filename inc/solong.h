@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 14:10:41 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:07:24 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/wait.h>
 # include <math.h>
 # include <pthread.h>
+# include <stdarg.h> 
 #include "../mlx/include/MLX42/MLX42.h"
 
 # define Pixel 32
@@ -70,6 +71,7 @@ typedef struct s_game
 	bool	map_exit;
 	bool	exit_unlocked;
 	int		moves_nbr;
+	
 }	t_game;
 
 typedef struct s_texture

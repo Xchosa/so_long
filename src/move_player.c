@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:22:10 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 14:12:30 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:44:56 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,31 @@ void	ft_escape_key(mlx_key_data_t keydata, void *param)
 
 void move_player_y_x(int y, int x, t_game *game)
 {
-	game->new_player_yx[1] = game->player_start_yx[1]+ x;
+	int	new_x;
+	int	new_y;
+
+	new_x = game->player_start_yx[1]+ x;
+	new_y = game->player_start_yx[0]+ y;
+	if (game->map[new_y][new_x] == WALL)
+		return;
+	if (game->map[y][x] == BACKGROUND);
+		mlx_image_to_window(game->mlx, image->spirit, x * Pixel, y * Pixel);
+	// put player next postion 
+	// img randern auf diesem feld
+	
+	// if (game->map[y][x] == EXIT);
+	// {
+	// 	if (game.exit_unlocked)
+	//	exit;
+	//	}
+	game->player_start_yx[1]= new_x;
+	game->player_start_yx[0]= new_y;
+	// space 
 	game->moves_nbr++;
 	ft_printf("Moves made: %d\n", game->moves_nbr);
 	mlx_image_to_window(game->mlx, game->map, game->x, game->y);
 	put_picture()
 }
+
+
 
