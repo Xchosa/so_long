@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:51:52 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:37:30 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ void validate_map(t_game *game)
 	validate_path(game);
 	game->x = x_max;
 	game->y = y_max;
+	game->moves_nbr = 0;
 	// error handling in the function. 
 }

@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:22:10 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:26:41 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:40:04 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	ft_escape_key(mlx_key_data_t keydata, void *param)
 	game = (t_game *) param;
 	
 	game->moves_nbr++;
-	ft_printf("moves:", game->moves_nbr);
+	ft_printf("moves: %d \n", game->moves_nbr);
 	
-	ft_printf("check key loop \n");
 	if(keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 		move_player_y_x(1, 0, game, game->image);
 	if(keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
@@ -73,8 +72,7 @@ void	move_player_y_x(int y, int x, t_game *game, t_img *image)
 	game->player_start_yx[0]= new_y;
 	ft_printf("check seq after move %d \n", new_x);
 	ft_printf("check seq after move %d \n", new_y);
-	game->moves_nbr++;
-	ft_printf("Moves made: %d\n", game->moves_nbr);
+
 }
 
 
