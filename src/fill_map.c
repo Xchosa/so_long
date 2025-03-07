@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 14:06:09 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:48:33 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,23 @@ void	get_map(char *map_name, t_game *game)
 // function fur texture mit pointer
 // und function fuer texture to image 
 
-void fill_texture_image(t_texture *texture, t_img *image, t_game *game)
+// void fill_texture_image(t_texture *texture, t_img *image, t_game *game)
+// {
+// 	texture->background = mlx_load_png("./img/background_star.png");
+// 	texture->wall = mlx_load_png("./img/star_space.png");
+// 	texture->collectives = mlx_load_png("./img/R2_D2.png");
+// 	texture->exit = mlx_load_png("./img/ship.png");
+// 	texture->spirit = mlx_load_png("./img/yoda.png");
+	
+// 	image->background = mlx_texture_to_image(game->mlx, texture->background);
+// 	image->wall = mlx_texture_to_image(game->mlx, texture->wall);
+// 	image->collectives = mlx_texture_to_image(game->mlx, texture->collectives);
+// 	image->exit = mlx_texture_to_image (game->mlx, texture->exit);
+// 	image->spirit = mlx_texture_to_image (game->mlx, texture->spirit);
+	
+// }
+
+void fill_texture_image(t_texture *texture, t_game *game)
 {
 	texture->background = mlx_load_png("./img/background_star.png");
 	texture->wall = mlx_load_png("./img/star_space.png");
@@ -53,40 +69,46 @@ void fill_texture_image(t_texture *texture, t_img *image, t_game *game)
 	texture->exit = mlx_load_png("./img/ship.png");
 	texture->spirit = mlx_load_png("./img/yoda.png");
 	
-	image->background = mlx_texture_to_image(game->mlx, texture->background);
-	image->wall = mlx_texture_to_image(game->mlx, texture->wall);
-	image->collectives = mlx_texture_to_image(game->mlx, texture->collectives);
-	image->exit = mlx_texture_to_image (game->mlx, texture->exit);
-	image->spirit = mlx_texture_to_image (game->mlx, texture->spirit);
+	game->image->background = mlx_texture_to_image(game->mlx, texture->background);
+	game->image->wall = mlx_texture_to_image(game->mlx, texture->wall);
+	game->image->collectives = mlx_texture_to_image(game->mlx, texture->collectives);
+	game->image->exit = mlx_texture_to_image (game->mlx, texture->exit);
+	game->image->spirit = mlx_texture_to_image (game->mlx, texture->spirit);
 	
 }
  
 
 
-void fill_map(t_game *game, t_img *image, t_texture *texture)
+void render_map(t_game *game, t_texture *texture)
 {
 	int x;
 	int y;
 	y = 0;
-	game->mlx = mlx_init(Pixel * game->x, Pixel * game->y, "so_long",true);
-	fill_texture_image(texture, image, game);
+	game->mlx = mlx_init(Pixel * game->x, Pixel * game->y, "so_long", false);
+	if (!game->mlx)
+		{printf("lol\n");
+		exit(1);}
+	fill_texture_image(texture, game);
 	while (game->map[y]) // x noch \0 , darf nicht geprueft werde 
 	{
 		x = 0;
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == WALL)
-				mlx_image_to_window(game->mlx, image->wall, x * Pixel, y * Pixel);
+				mlx_image_to_window(game->mlx, game->image->wall, x * Pixel, y * Pixel);
 			if (game->map[y][x] == BACKGROUND)
-				mlx_image_to_window(game->mlx, image->background, x * Pixel, y * Pixel);
+				mlx_image_to_window(game->mlx, game->image->background, x * Pixel, y * Pixel);
 			if (game->map[y][x] == PLAYER)
-				mlx_image_to_window(game->mlx, image->spirit, x * Pixel, y * Pixel);
+				mlx_image_to_window(game->mlx, game->image->spirit, x * Pixel, y * Pixel);
 			if (game->map[y][x] == EXIT)
-				mlx_image_to_window(game->mlx, image->exit, x * Pixel, y * Pixel);
+				mlx_image_to_window(game->mlx, game->image->exit, x * Pixel, y * Pixel);
 			if (game->map[y][x] == COLLECTIBLES)
-				mlx_image_to_window(game->mlx, image->collectives, x * Pixel, y * Pixel);
+				mlx_image_to_window(game->mlx, game->image->collectives, x * Pixel, y * Pixel);
 			x++;
 		}
 		y++;
 	}
 }
+
+
+

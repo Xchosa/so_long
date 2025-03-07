@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/06 12:23:02 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/07 10:29:47 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ MY_SOURCES = \
 			$(SOURCE_DIR)main.c \
 			$(SOURCE_DIR)fill_map.c \
 			$(SOURCE_DIR)validate_map.c \
+			$(SOURCE_DIR)valid_map_string.c \
 			$(SOURCE_DIR)validate_path.c \
 			$(SOURCE_DIR)validate_error.c \
 			$(SOURCE_DIR)move_player.c \

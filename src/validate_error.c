@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 09:39:34 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 12:23:35 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 10:58:38 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../mlx/include/MLX42/MLX42.h"
 
 
-void validate_error_map(char *error_msg, t_game game)
+void validate_error_map(char *error_msg, t_game *game)
 {
 	// ft_free_split(game.copy_map);
 	// ft_free_split(game.map);

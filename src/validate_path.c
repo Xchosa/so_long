@@ -6,27 +6,15 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 15:41:21 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:56:26 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 #include "../mlx/include/MLX42/MLX42.h"
 
-// raender alle 1 check 
-	// mind 1 collectiv
-	
-	// ein exit 
-	// rechteckig - jede zeile und spalte gleich lang \\ check 
-	// valid path yum collectiv und ziel
-	// flood fill zum pruefen 
-
-
 void	flood_fill(t_game *game, int y, int x)
 {
-	// start_point  uebergeben;
-	
-	// overwrite the copy of the map with X
 	if ((game->copy_map[y][x] == 'X') || (game->copy_map[y][x] == '1'))
 		return ;
 	if (game->copy_map[y][x] == 'E')
@@ -47,22 +35,15 @@ void	validate_path(t_game *game)
 {
 	game->collectables_check = 0;
 	game->map_exit = false;
-	ft_printf("count collectables %d \n", game->collectables);
-	ft_printf("position player x %d \n", game->collectables_check);
+	
 	flood_fill(game, game->player_start_yx[0], game->player_start_yx[1]);
 	if ((game->collectables) != (game->collectables_check))
 	{
-		validate_error_map("Not all collectables are reachable", *game);
+		validate_error_map("Not all collectables are reachable", game);
 	}
 	if (game->map_exit == false)
 	{
-		validate_error_map("exit not reachable", *game);
+		validate_error_map("exit not reachable", game);
 	}
 }
 
-if (game->map[y][x] == BACKGROUND)
-	mlx_image_to_window(game->mlx, image->background, x * Pixel, y * Pixel);
-if (game->map[y][x] == PLAYER)
-				mlx_image_to_window(game->mlx, image->spirit, x * Pixel, y * Pixel);
-
-// for keyhook

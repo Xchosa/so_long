@@ -6,56 +6,14 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/06 14:11:17 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:51:52 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 #include "../mlx/include/MLX42/MLX42.h"
 
-
-void validate_characters_general(char *joined_line)
-{
-	int i;
-	i = 0;
-	while (joined_line[i] != '\0')
-    {
-        if (joined_line[i] != '0' && joined_line[i] != '1' &&
-            joined_line[i] != 'P' && joined_line[i] != 'E' &&
-            joined_line[i] != 'C' && joined_line[i] != '\n')
-        	{
-				free(joined_line);
-           		exit(ft_printf("Map with wrong input: %s", joined_line[i])); 
-        	}
-        i++;
-    }
-	count_player(joined_line);
-}
-
-void count_player(char *map_as_string)
-{
-	int count_player;
-	int i;
-	i = 0;
-	count_player = 0;
-	while (map_as_string[i] != '\0')
-	{
-		if (map_as_string[i] == 'P')
-			count_player++;
-		i++;
-	}
-	if (count_player == 0 )
-	{
-		free(map_as_string);
-		exit(ft_printf("error/n No player found"));
-	}
-	if (count_player == 2 )
-	{
-		free(map_as_string);
-		exit(ft_printf("error/n %d player found", count_player));
-	}
-}
-void find_start(t_game *game)
+void find_position_player(t_game *game)
 {
 	int y = 0;
 	int x;
@@ -68,30 +26,15 @@ void find_start(t_game *game)
 			{
 				game->player_start_yx[0] = y;
 				game->player_start_yx[1] = x;
+				ft_printf("postion player start  y inital : %d \n", game->player_start_yx[0]);
+				ft_printf("position player start x inital: %d\n", game->player_start_yx[1]);
 				return;
 			}
 			x++;
 		}
 		y++;
 	}
-	exit(ft_printf("error/n could not find Starting Point of Player"));
-}
-
-int count_collectables(char *game_as_string)
-{
-	int count_collectables;
-	int i;
-	i = 0;
-	count_collectables = 0;
-	while (game_as_string[i])
-	{
-		if (game_as_string[i] == 'C')
-			count_collectables++;
-		i++;
-	}
-	if (count_collectables == 0)
-		ft_printf("error\n No collectiables found");
-	return(count_collectables);
+	exit(ft_printf("error\n could not find Starting Point of Player"));
 }
 
 bool exit_unlocked(t_game *game)
@@ -103,7 +46,7 @@ bool exit_unlocked(t_game *game)
 	return (exit_unlocked);
 }
 
-bool	validate_edge(t_game game, int x_max, int y_max)
+bool	validate_edge(t_game *game, int x_max, int y_max)
 {
 	int x;
 	int y;
@@ -113,7 +56,7 @@ bool	validate_edge(t_game game, int x_max, int y_max)
 	bool_edges = true;
 	while(y < y_max)
 	{
-		if((game.map[y][0] != '1') || (game.map[y][x_max-1]) != '1')
+		if((game->map[y][0] != '1') || (game->map[y][x_max-1]) != '1')
 		{
 			return(bool_edges = false);
 		}
@@ -121,7 +64,7 @@ bool	validate_edge(t_game game, int x_max, int y_max)
 	}
 	while(x < x_max )
 	{
-		if(((game.map[0][x]) != '1') || (game.map[y_max-1][x] != '1'))
+		if(((game->map[0][x]) != '1') || (game->map[y_max-1][x] != '1'))
 		{
 			return(bool_edges = false);
 		}
@@ -133,16 +76,16 @@ bool	validate_edge(t_game game, int x_max, int y_max)
 
 
 // validate_rectangular, and if map is surrounded by walls
-bool	validate_rectangular(t_game game, int y_max )
+bool	validate_rectangular(t_game *game, int y_max )
 {
 	bool bool_rectangular;
 	bool_rectangular = true;
 	int y = 0;
 	int current_row_length;
-	int first_row_length= ft_strlen(game.map[0]);
+	int first_row_length= ft_strlen(game->map[0]);
 	while(y < y_max)
 	{
-		current_row_length = ft_strlen(game.map[y]);
+		current_row_length = ft_strlen(game->map[y]);
 		if (current_row_length !=  first_row_length)
 		{
 			return(bool_rectangular = false);
@@ -153,20 +96,22 @@ bool	validate_rectangular(t_game game, int y_max )
 }
 
 
-void validate_map(t_game game)
+void validate_map(t_game *game)
 {
 	int x_max;
 	int y_max;
-	x_max = game.x;
-	y_max = game.y;
-	game.x = 0;
-	game.y = 0;
-	find_start(&game);
-	game.moves_nbr = 0;
+	x_max = game->x;
+	y_max = game->y;
+	game->x = 0;
+	game->y = 0;
+	find_position_player(game);
+	game->moves_nbr = 0;
 	if ((validate_edge(game, x_max, y_max) == false))
 		validate_error_map("Map is not surrounded by walls", game);
 	if (validate_rectangular(game, y_max) == false)
 		validate_error_map("Map is not rectangular", game);
-	validate_path(&game);
+	validate_path(game);
+	game->x = x_max;
+	game->y = y_max;
 	// error handling in the function. 
 }
