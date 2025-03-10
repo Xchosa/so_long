@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 09:40:57 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:37:05 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,26 @@ void	get_map(char *map_name, t_game *game)
 
 void fill_texture_image(t_texture *texture, t_game *game)
 {
+	if(!game->mlx)
+		mlx_terminate(game->mlx);
 	texture->background = mlx_load_png("./img/background_star.png");
 	texture->wall = mlx_load_png("./img/star_space.png");
 	texture->collectives = mlx_load_png("./img/R2_D2.png");
 	texture->exit = mlx_load_png("./img/ship.png");
 	texture->spirit = mlx_load_png("./img/yoda.png");
+	texture->win = mlx_load_png("./img/win_game.png");
+	texture->droide = mlx_load_png("./img/Droide.png");
+	texture->loose = mlx_load_png("./img/Loose.png");
 	
 	game->image->background = mlx_texture_to_image(game->mlx, texture->background);
 	game->image->wall = mlx_texture_to_image(game->mlx, texture->wall);
 	game->image->collectives = mlx_texture_to_image(game->mlx, texture->collectives);
 	game->image->exit = mlx_texture_to_image (game->mlx, texture->exit);
 	game->image->spirit = mlx_texture_to_image (game->mlx, texture->spirit);
-	
-}
+	game->image->win  = mlx_texture_to_image (game->mlx, texture->win);
+	game->image->droide  = mlx_texture_to_image (game->mlx, texture->droide);
+ 	game->image->loose  = mlx_texture_to_image (game->mlx, texture->loose);
+ }
  
 
 void render_map(t_game *game, t_texture *texture)

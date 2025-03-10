@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 09:40:39 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:35:29 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void find_position_player(t_game *game)
 			{
 				game->player_yx[0] = y;
 				game->player_yx[1] = x;
-				// ft_printf("postion player start  y inital : %d \n", game->player_start_yx[0]);
-				// ft_printf("position player start x inital: %d\n", game->player_start_yx[1]);
 				return;
 			}
 			x++;
@@ -116,6 +114,5 @@ void validate_map(t_game *game)
 	game->moves_nbr = 0;
 	game->exit_unlocked = exit_unlocked(game);
 	game->collectables = 0;
-	
-	// error handling in the function. 
+	game->finished = false;
 }

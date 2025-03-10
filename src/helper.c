@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 10:25:33 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:25:22 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,24 @@ void ft_free_split(char **str)
 		i++;
 	}
 }
-
-void print_split(char **str)
+void free_map(t_game *game)
 {
-	ft_printf("%s", str[0]);
-	// int i;
-	// i = 0;
-	// while(str[i])
-	// {
-	// 	ftprintf("%s\n", str[i]);
-	// 	i++;
-	// }
+	int i;
+	i = 0;
+	while(game->map[i])
+	{
+		free(game->map[i]);
+		i++;
+	}
+} 
+
+void terminate_game(t_game *game, t_img *images)
+{
+	free_images(game, images);
+	free_map(game);
+	mlx_terminate(game->mlx);
+	exit(1);
 }
-// lvl2.ber
-// strlen = 8 
 
 void	check_input(int argc, char **argv)
 {
