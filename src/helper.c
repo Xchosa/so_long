@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 15:25:22 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:34:41 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ void free_map(t_game *game)
 	while(game->map[i])
 	{
 		free(game->map[i]);
+		i++;
+	}
+}
+
+void free_map_copy(t_game *game)
+{
+	int i;
+	i = 0;
+	while(game->copy_map[i])
+	{
+		free(game->copy_map[i]);
 		i++;
 	}
 } 

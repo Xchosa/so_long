@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 09:39:34 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 12:53:13 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:20:35 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 void validate_error_map(char *error_msg, t_game *game)
 {
-	// ft_free_split(game.copy_map);
-	// ft_free_split(game.map);
-	// free of player_start ? 
 	(void)game;
 	ft_putendl_fd("error", STDERR_FILENO);
 	ft_putendl_fd(error_msg, STDERR_FILENO);

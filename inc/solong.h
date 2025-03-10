@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 15:26:57 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:37:16 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ typedef struct s_game
 	bool		finished;
 	
 }	t_game;
-void	print_split(char **str);
+
+
 void	ft_free_split(char **str);
 void 	check_input(int argc, char **argv);
 
@@ -113,7 +114,7 @@ void	validate_characters_general(char *joined_line);
 void	validate_path(t_game *game);
 bool	exit_unlocked(t_game *game);
 void	count_player(char *map_as_string);
-int		count_collectables(char *game_as_string);
+int		count_collectables(char *game_as_string, t_game *game);
 void 	find_position_player(t_game *game);
 
 void 	get_map(char *map_name, t_game *game);
@@ -127,7 +128,7 @@ void	set_image_player(t_game *game, t_img *image, int new_x, int new_y);
 
 void	free_images(t_game *game, t_img *images);
 void	print_success (int new_x, int new_y, t_game *game, t_img *image);
-
+void	free_map_copy(t_game *game);
 void	validate_error_map(char *error_msg, t_game *game);
 void	free_map(t_game *game);
 void	set_player_nbr_moves(t_game *game, int new_x, int new_y);

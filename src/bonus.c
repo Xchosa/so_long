@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:23:59 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 15:26:26 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:43:33 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	bonus_droide(t_game *game)
 		droide_y = 2 + (game->moves_nbr % 3);
 	else
 		droide_y = 4 - (game->moves_nbr % 3);
+	game->map[droide_x][droide_y] = DROIDE;
 	mlx_image_to_window(game->mlx, game->image->droide, droide_x * Pixel, droide_y * Pixel);
 	
 	if (game->moves_nbr > 0)
@@ -32,6 +33,7 @@ void	bonus_droide(t_game *game)
             prev_droide_y = 2 + ((game->moves_nbr - 1) % 3);
         else
             prev_droide_y = 4 - ((game->moves_nbr - 1) % 3);
+		game->map[droide_x][prev_droide_y] = BACKGROUND;
         mlx_image_to_window(game->mlx, game->image->background, droide_x * Pixel, prev_droide_y * Pixel);
     }
     return;

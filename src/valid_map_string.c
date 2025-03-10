@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:52:59 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 14:06:34 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:38:38 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void validate_characters_general(char *joined_line)
             joined_line[i] != 'P' && joined_line[i] != 'E' &&
             joined_line[i] != 'C' && joined_line[i] != '\n')
         	{
+				ft_printf("Map with wrong input: %c\n", joined_line[i]); 
 				free(joined_line);
-           		exit(ft_printf("Map with wrong input: %s", joined_line[i])); 
+				exit(1);
         	}
         i++;
     }
-	count_player(joined_line);
+	return ;
 }
 
 void count_player(char *map_as_string)
@@ -56,7 +57,7 @@ void count_player(char *map_as_string)
 		exit(ft_printf("error/n %d player found", count_player));
 	}
 }
-int count_collectables(char *game_as_string)
+int count_collectables(char *game_as_string, t_game *game)
 {
 	int count_collectables;
 	int i;
@@ -69,6 +70,11 @@ int count_collectables(char *game_as_string)
 		i++;
 	}
 	if (count_collectables == 0)
+	{
 		ft_printf("error\n No collectiables found");
+		free_map(game);
+		free_map_copy(game);
+		exit(1);
+	}
 	return(count_collectables);
 }

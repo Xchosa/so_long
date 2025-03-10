@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:22:10 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 15:32:24 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:54:10 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	move_player_y_x(int y, int x, t_game *game, t_img *image)
 		print_success(new_x, new_y, game, image);
 	if (game->map[new_y][new_x] == BACKGROUND)
 		set_image_player(game, image, new_x, new_y);
+	bonus_droide(game);
+	if (game->map [new_y][new_x] == DROIDE)
+		print_loose(new_x, new_y, game, image);
 	set_player_nbr_moves(game, new_x, new_y);
-// 	if (game->map [new_y][new_x] == DROIDE)
-// 		print_loose(new_x, new_y, game, image);
-// 	bonus_droide(game);
 }
 
 void print_success (int new_x, int new_y, t_game *game, t_img *image)
@@ -65,7 +65,7 @@ void print_success (int new_x, int new_y, t_game *game, t_img *image)
 	if(game->exit_unlocked == true)
 	{
 		set_image_player(game, image, new_x, new_y);
-		mlx_image_to_window(game->mlx, image->win, 1 * Pixel, 3 * Pixel);
+		mlx_image_to_window(game->mlx, image->win, 2 * Pixel, 2 * Pixel);
 		game->finished = true;
 	}
 	else

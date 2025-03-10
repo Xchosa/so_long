@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 14:37:05 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:28:17 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	get_map(char *map_name, t_game *game)
 		map_line = get_next_line(fd);
 		game->y++;
 	}
-	validate_characters_general(joined_line);// exit and frees if fail
-	ft_printf("%s\n",joined_line);
+	validate_characters_general(joined_line);
+	// ft_printf("%s\n",joined_line);
 	game->map = ft_split(joined_line, '\n'); // 
 	game->copy_map = ft_split(joined_line, '\n');
-	game->collectables = count_collectables(joined_line);
+	game->collectables = count_collectables(joined_line, game);
 	game->x = ft_strlen(game->map[0]);
 	free(joined_line);
 }
