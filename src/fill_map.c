@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:48:33 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:40:57 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,10 @@ void	get_map(char *map_name, t_game *game)
 	game->map = ft_split(joined_line, '\n'); // 
 	game->copy_map = ft_split(joined_line, '\n');
 	game->collectables = count_collectables(joined_line);
-	game->exit_unlocked = exit_unlocked(game); 
 	game->x = ft_strlen(game->map[0]);
 	free(joined_line);
 }
 
-
-// function fur texture mit pointer
-// und function fuer texture to image 
-
-// void fill_texture_image(t_texture *texture, t_img *image, t_game *game)
-// {
-// 	texture->background = mlx_load_png("./img/background_star.png");
-// 	texture->wall = mlx_load_png("./img/star_space.png");
-// 	texture->collectives = mlx_load_png("./img/R2_D2.png");
-// 	texture->exit = mlx_load_png("./img/ship.png");
-// 	texture->spirit = mlx_load_png("./img/yoda.png");
-	
-// 	image->background = mlx_texture_to_image(game->mlx, texture->background);
-// 	image->wall = mlx_texture_to_image(game->mlx, texture->wall);
-// 	image->collectives = mlx_texture_to_image(game->mlx, texture->collectives);
-// 	image->exit = mlx_texture_to_image (game->mlx, texture->exit);
-// 	image->spirit = mlx_texture_to_image (game->mlx, texture->spirit);
-	
-// }
 
 void fill_texture_image(t_texture *texture, t_game *game)
 {
@@ -78,16 +58,12 @@ void fill_texture_image(t_texture *texture, t_game *game)
 }
  
 
-
 void render_map(t_game *game, t_texture *texture)
 {
 	int x;
 	int y;
 	y = 0;
 	game->mlx = mlx_init(Pixel * game->x, Pixel * game->y, "so_long", false);
-	if (!game->mlx)
-		{printf("lol\n");
-		exit(1);}
 	fill_texture_image(texture, game);
 	while (game->map[y]) // x noch \0 , darf nicht geprueft werde 
 	{

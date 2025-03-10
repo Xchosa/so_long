@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:56:26 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:33:56 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	validate_path(t_game *game)
 	game->collectables_check = 0;
 	game->map_exit = false;
 	
-	flood_fill(game, game->player_start_yx[0], game->player_start_yx[1]);
+	flood_fill(game, game->player_yx[0], game->player_yx[1]);
 	if ((game->collectables) != (game->collectables_check))
 	{
 		validate_error_map("Not all collectables are reachable", game);

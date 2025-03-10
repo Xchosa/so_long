@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:19:44 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:26:31 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_game
 	char		**copy_map;
 	int			x;
 	int			y;
-	int 		player_start_yx[2];
+	int 		player_yx[2];
 	int		new_player_yx[2];
 	int		collectables;
 	int		collectables_check;

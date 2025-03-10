@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:18:41 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/07 15:01:23 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/10 09:32:20 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int main(int argc, char **argv)
 	get_map(argv[1], &game);
 	validate_map(&game);
 	render_map(&game, &texture);
-	
+	ft_printf("%d  collectables collected from : %d collectables \n", game.collectables, game.collectables_check);
+	ft_printf("Exit unlocked? %s", game.exit_unlocked);
 	mlx_key_hook(game.mlx, &ft_escape_key, &game);
-	//mlx_key_hook()
+	
 	mlx_loop(game.mlx);
 	mlx_terminate(game.mlx); //free everything left // mlx_delete_image(game->mlx, img);
 	return(EXIT_SUCCESS);
