@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/10 15:26:03 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/11 09:32:13 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,7 @@ clean:
 fclean: clean
 	@echo "$(On_Yellow)Removing Executables...$(Color_Off)"
 	@rm -f $(NAME)
+	@rm -rf $(OBJ_DIR) $(BIN_DIR)
 	make -C libft fclean
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 13:40:07 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:39:35 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	flood_fill(t_game *game, int y, int x)
 	if (game->copy_map[y][x] == 'C')
 		game->collectables_check++;
 	game->copy_map[y][x] = 'X';
-	
-	// collect collectibles 
 	flood_fill(game, y + 1, x);
 	flood_fill(game, y - 1, x);
 	flood_fill(game, y, x + 1);
@@ -35,7 +33,6 @@ void	validate_path(t_game *game)
 {
 	game->collectables_check = 0;
 	game->map_exit = false;
-	
 	flood_fill(game, game->player_yx[0], game->player_yx[1]);
 	if ((game->collectables) != (game->collectables_check))
 	{
@@ -45,5 +42,5 @@ void	validate_path(t_game *game)
 	{
 		validate_error_map("exit not reachable", game);
 	}
+	ft_free_split(game->copy_map);
 }
-

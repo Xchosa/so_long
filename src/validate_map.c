@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 13:35:29 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:40:10 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,21 @@ bool	validate_rectangular(t_game *game, int y_max )
 	return (bool_rectangular);
 }
 
-
 void validate_map(t_game *game)
 {
-	int x_max;
-	int y_max;
+	int	x_max;
+	int	y_max;
+
 	x_max = game->x;
 	y_max = game->y;
 	game->x = 0;
 	game->y = 0;
 	find_position_player(game);
 	game->moves_nbr = 0;
-	if ((validate_edge(game, x_max, y_max) == false))
-		validate_error_map("Map is not surrounded by walls", game);
 	if (validate_rectangular(game, y_max) == false)
 		validate_error_map("Map is not rectangular", game);
+	if ((validate_edge(game, x_max, y_max) == false))
+		validate_error_map("Map is not surrounded by walls", game);
 	validate_path(game);
 	game->x = x_max;
 	game->y = y_max;

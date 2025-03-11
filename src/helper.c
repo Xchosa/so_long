@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/10 16:34:41 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:39:16 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "../mlx/include/MLX42/MLX42.h"
 
 
-void ft_free_split(char **str)
+void	ft_free_split(char **str)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(*str[i])
+	while(str[i])
 	{
 		free(str[i]);
 		i++;
@@ -38,13 +39,14 @@ void free_map(t_game *game)
 void free_map_copy(t_game *game)
 {
 	int i;
+
 	i = 0;
 	while(game->copy_map[i])
 	{
 		free(game->copy_map[i]);
 		i++;
 	}
-} 
+}
 
 void terminate_game(t_game *game, t_img *images)
 {
