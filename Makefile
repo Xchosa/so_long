@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/11 16:00:48 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/11 16:18:31 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,17 +83,17 @@ test: $(NAME)
 
 checkMLX:
 	@if	[ ! -d "$(MLX_DIR)" ];	then	\
-        echo "$(YELLOW)Downloading MLX42...$(NC)"; \
+        echo "$(Yellow)Downloading MLX42...$(Color_Off)"; \
         git clone https://github.com/codam-coding-college/MLX42.git $(MLX_DIR) && \
         cmake -B $(MLX_DIR)/build -S $(MLX_DIR) && \
         make -C $(MLX_DIR)/build; \
         if [ $$? -ne 0 ]; then \
-            echo "$(RED)Error building MLX42$(NC)"; \
+            echo "$(Red)Error building MLX42$(Color_Off)"; \
             exit 1; \
         fi; \
-        echo "$(GREEN)MLX42 installed$(NC)"; \
+        echo "$(BGreen)MLX42 installed$(Color_Off)"; \
     else \
-        echo "$(GREEN)MLX42 already exists$(NC)"; \
+        echo "$(BGreen)MLX42 already exists$(Color_Off)"; \
     fi
 			
 
