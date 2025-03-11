@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 17:46:33 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:48:52 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	get_map(char *map_name, t_game *game)
 	int		fd;
 	char	*map_line;
 	char	*joined_line;
-	char	*tmp
+	char	*tmp;
 
 	joined_line = "";
 	// joined_line = malloc(sizeof(char));
@@ -31,6 +31,7 @@ void	get_map(char *map_name, t_game *game)
 	{
 		printf("joined line%p \n", joined_line);
 		tmp = ft_strdup(joined_line);
+		free(joined_line);
 		joined_line = ft_strjoin(tmp, map_line);
 		free(map_line);
 		map_line = get_next_line(fd);
