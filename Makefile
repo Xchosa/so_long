@@ -6,14 +6,14 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/11 09:32:13 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/11 16:00:48 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 	= so_long
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g -I inc/
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
 
@@ -55,7 +55,7 @@ On_Yellow = \033[43m
 On_Green = \033[42m
 Red = \033[0;31m
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR)%.o: $(SOURCE_DIR)%.c | $(OBJ_DIR)
 	$(CC)	$(CFLAGS)	-c $<	-o $@

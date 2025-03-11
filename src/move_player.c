@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:22:10 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 10:41:45 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:53:10 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	ft_escape_key(mlx_key_data_t keydata, void *param)
 {
-	t_game *game;
+	t_game	*game;
+
 	game = (t_game *) param;
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 		move_player_y_x(-1, 0, game, game->image);
@@ -23,11 +24,11 @@ void	ft_escape_key(mlx_key_data_t keydata, void *param)
 		move_player_y_x(0, -1, game, game->image);
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
 		move_player_y_x(1, 0, game, game->image);
-	if (keydata.key == MLX_KEY_D  && keydata.action == MLX_RELEASE)
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
 		move_player_y_x(0, 1, game, game->image);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		exit(1);
+		terminate_game(game, game->image);
 	}
 }
 
@@ -36,8 +37,8 @@ void	move_player_y_x(int y, int x, t_game *game, t_img *image)
 	int	new_x;
 	int	new_y;
 
-	new_y = game->player_yx[0]+ y;
-	new_x = game->player_yx[1]+ x;
+	new_y = game->player_yx[0] + y;
+	new_x = game->player_yx[1] + x;
 	if (game->finished == true)
 		terminate_game(game, image);
 	if (game->map[new_y][new_x] == WALL)
@@ -59,33 +60,36 @@ void	move_player_y_x(int y, int x, t_game *game, t_img *image)
 	set_player_nbr_moves(game, new_x, new_y);
 }
 
-void	print_success (int new_x, int new_y, t_game *game, t_img *image)
+void	print_success(int new_x, int new_y, t_game *game, t_img *image)
 {
 	if (game->exit_unlocked == true)
 	{
 		set_image_player(game, image, new_x, new_y);
 		if (game->x < 5)
-			mlx_image_to_window(game->mlx, image->win, 0.1 * Pixel, 0.1 * Pixel);
-		else 
-			mlx_image_to_window(game->mlx, image->win, game->x /2 * Pixel, 0.2 * Pixel);
+			mlx_image_to_window(game->mlx, image->win,
+				0.1 * PIXEL, 0.1 * PIXEL);
+		else
+			mlx_image_to_window(game->mlx, image->win,
+				game->x / 2 * PIXEL, 0.2 * PIXEL);
 		game->finished = true;
 		game->moves_nbr++;
 		ft_printf("moves: %d \n", game->moves_nbr);
 	}
 	else
-		return;
+		return ;
 }
 
-void set_player_nbr_moves(t_game *game, int new_x, int new_y)
+void	set_player_nbr_moves(t_game *game, int new_x, int new_y)
 {
-	game->player_yx[1]= new_x;
-	game->player_yx[0]= new_y;
+	game->player_yx[1] = new_x;
+	game->player_yx[0] = new_y;
 	game->moves_nbr++;
 	ft_printf("moves: %d \n", game->moves_nbr);
 }
 
 void	set_image_player(t_game *game, t_img *image, int new_x, int new_y )
 {
-	mlx_image_to_window(game->mlx, image->spirit, new_x * Pixel, new_y * Pixel);
-	mlx_image_to_window(game->mlx, image->background, game->player_yx[1] * Pixel, game->player_yx[0]* Pixel);
+	mlx_image_to_window(game->mlx, image->spirit, new_x * PIXEL, new_y * PIXEL);
+	mlx_image_to_window(game->mlx, image->background,
+		game->player_yx[1] * PIXEL, game->player_yx[0] * PIXEL);
 }

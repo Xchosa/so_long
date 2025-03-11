@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:20:20 by poverbec          #+#    #+#             */
-/*   Updated: 2025/02/20 09:34:56 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:49:42 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 // string to float
 
-
-
 float	ft_atoi(const char *str)
 {
 	float	isneg;
-	int	i;
+	int		i;
 	float	number;
 
 	number = 0;
@@ -40,4 +38,3 @@ float	ft_atoi(const char *str)
 	}
 	return (number * isneg);
 }
-

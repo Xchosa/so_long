@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 10:54:00 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 10:39:35 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:20:38 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	flood_fill(t_game *game, int y, int x)
 	flood_fill(game, y, x + 1);
 	flood_fill(game, y, x -1);
 }
+
 void	validate_path(t_game *game)
 {
 	game->collectables_check = 0;
