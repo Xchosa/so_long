@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 09:39:34 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 16:10:29 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:04:36 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ void	free_images(t_game *game, t_img *images)
 	mlx_delete_image(game->mlx, images->win);
 	mlx_delete_image(game->mlx, images->loose);
 	mlx_delete_image(game->mlx, images->droide);
+	free(images);
 }
 
-void	gnl_exit(char *error_msg)
+
+void	gnl_exit(char *error_msg, int fd)
 {
 	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(error_msg, STDERR_FILENO);
+	close(fd);
 	exit(1);
 }
 

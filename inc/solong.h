@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 16:02:29 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:54:09 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	free_images(t_game *game, t_img *images);
 void	free_map(t_game *game);
 void	ft_free_split(char **str);
 void	faild_split(char *error_msg, t_game *game);
-void	gnl_exit(char *error_msg);
+void	gnl_exit(char *error_msg, int fd);
 
 //bonus Droide is petroling
 void	bonus_droide(t_game *game);

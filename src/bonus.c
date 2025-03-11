@@ -6,12 +6,12 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:23:59 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 15:27:06 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:36:07 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../inc/solong.h"
-// #include "../mlx/include/MLX42/MLX42.h"
+#include "../inc/solong.h"
+#include "../mlx/include/MLX42/MLX42.h"
 
 // void	bonus_droide(t_game *game)
 // {
@@ -85,8 +85,8 @@
 // }
 
 // // atexit(leaks);
-// void	leaks(void)
-// {
-// 	ft_printf("\n");
-// 	system("leaks so_long");
-// }
+void	leaks(void)
+{
+	ft_printf("\n");
+	system("leaks so_long");
+}

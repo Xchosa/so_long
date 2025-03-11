@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 15:52:27 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:46:33 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ void	get_map(char *map_name, t_game *game)
 	int		fd;
 	char	*map_line;
 	char	*joined_line;
+	char	*tmp
 
 	joined_line = "";
+	// joined_line = malloc(sizeof(char));
 	game->y = 0;
 	fd = open(map_name, O_RDONLY);
 	if (!fd)
-		gnl_exit ("Could not read map");
+		gnl_exit ("Could not read map", fd);
 	map_line = get_next_line(fd);
 	while (map_line != NULL)
 	{
-		joined_line = ft_strjoin(joined_line, map_line);
+		printf("joined line%p \n", joined_line);
+		tmp = ft_strdup(joined_line);
+		joined_line = ft_strjoin(tmp, map_line);
 		free(map_line);
 		map_line = get_next_line(fd);
 		game->y++;
+
 	}
 	validate_characters_general(joined_line);
 	game->map = ft_split(joined_line, '\n');
@@ -39,7 +44,7 @@ void	get_map(char *map_name, t_game *game)
 		faild_split("failed split", game);
 	game->collectables = count_collectables(joined_line, game);
 	game->x = ft_strlen(game->map[0]);
-	free(joined_line);
+	return (free(joined_line), close(fd), (void)0);
 }
 
 void	ft_image_to_window(int y, int x, t_game *game)

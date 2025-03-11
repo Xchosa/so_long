@@ -6,13 +6,14 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/11 16:31:13 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/11 17:40:09 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 	= so_long
 CC		= cc
+# CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
 CFLAGS	= -Wall -Wextra -Werror -g -I inc/
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
@@ -58,10 +59,10 @@ Red = \033[0;31m
 all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR)%.o: $(SOURCE_DIR)%.c | $(OBJ_DIR)
-	$(CC)	$(CFLAGS)	-c $<	-o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p	$(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 	
 $(NAME): checkMLX $(MY_OBJECTS) $(LIBFT)
 	@echo "$(BIYellow) Compiling $(NAME) $(Color_Off)"
@@ -118,8 +119,9 @@ re: fclean all
 #	@cd src && norminette | grep "Error:" | wc -l
 #norminette: norm
 
+# f: fclean
+# f: CFLAGS += -g -fsanitize=address
 f: fclean
-f: CFLAGS += -g -fsanitize=address
-f: $(NAME)
-
+	$(CFLAGS) += -g -fsanitize=address
+	make all
 .PHONY: re clean fclean all
