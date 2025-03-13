@@ -6,15 +6,15 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/13 14:12:36 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/13 16:43:53 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 	= so_long
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -ldl -lglfw -pthread -lm
-# CFLAGS  -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
+#CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -ldl -lglfw -pthread -lm
+CFLAGS  = -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
 # CFLAGS	= -Wall -Wextra -Werror -g -I inc/
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
