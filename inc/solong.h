@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:17:42 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 16:54:09 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:45:34 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # include "../libft/printf/ft_printf.h"
-# include "../libft/get_next_line/get_next_line_bonus.h"
+# include "../libft/get_next_line/get_next_line.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <limits.h>
@@ -91,15 +91,16 @@ typedef struct s_game
 	bool		finished;
 }	t_game;
 
-void	check_input(int argc, char **argv);
+void	check_input(int argc, char **argv, t_game *game);
 void	get_map(char *map_name, t_game *game);
+void	fill_stack(char *joined_line, t_game *game, int fd);
 void	leaks(void);
 void	validate_map(t_game *game);
 bool	validate_edge(t_game *game, int x_max, int y_max);
 bool	validate_rectangular(t_game *game, int y_max);
-void	validate_characters_general(char *joined_line);
+void	validate_characters_general(char *joined_line, int fd);
 bool	exit_unlocked(t_game *game);
-void	count_player(char *map_as_string);
+void	count_player(char *map_as_string, int fd);
 int		count_collectables(char *game_as_string, t_game *game);
 void	find_position_player(t_game *game);
 
@@ -125,8 +126,8 @@ void	validate_error_map(char *error_msg, t_game *game);
 void	free_images(t_game *game, t_img *images);
 void	free_map(t_game *game);
 void	ft_free_split(char **str);
-void	faild_split(char *error_msg, t_game *game);
-void	gnl_exit(char *error_msg, int fd);
+void	faild_split(char *error_msg, t_game *game, int fd);
+void	gnl_exit(char *error_msg, char *joined_line, int fd);
 
 //bonus Droide is petroling
 void	bonus_droide(t_game *game);

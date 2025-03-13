@@ -6,15 +6,16 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/11 17:40:09 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/13 14:12:36 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME 	= so_long
 CC		= cc
-# CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
-CFLAGS	= -Wall -Wextra -Werror -g -I inc/
+CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -ldl -lglfw -pthread -lm
+# CFLAGS  -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
+# CFLAGS	= -Wall -Wextra -Werror -g -I inc/
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
 
@@ -33,6 +34,7 @@ SOURCE_DIR = src/
 MY_SOURCES = \
 			$(SOURCE_DIR)main.c \
 			$(SOURCE_DIR)fill_map.c \
+			$(SOURCE_DIR)images_to_struct.c \
 			$(SOURCE_DIR)validate_map.c \
 			$(SOURCE_DIR)valid_map_string.c \
 			$(SOURCE_DIR)validate_path.c \
@@ -56,7 +58,7 @@ On_Yellow = \033[43m
 On_Green = \033[42m
 Red = \033[0;31m
 
-all: $(OBJ_DIR) $(NAME)
+all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SOURCE_DIR)%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -86,7 +88,7 @@ checkMLX:
 	@if	[ ! -d "$(MLX_DIR)" ];	then	\
         echo "$(Yellow)Downloading MLX42...$(Color_Off)"; \
         git clone https://github.com/codam-coding-college/MLX42.git $(MLX_DIR) && \
-        cmake -B $(MLX_DIR)/build -S $(MLX_DIR) && \
+		cmake -B $(MLX_DIR)/build -S $(MLX_DIR) && \
         make -C $(MLX_DIR)/build; \
         if [ $$? -ne 0 ]; then \
             echo "$(Red)Error building MLX42$(Color_Off)"; \
@@ -121,7 +123,6 @@ re: fclean all
 
 # f: fclean
 # f: CFLAGS += -g -fsanitize=address
-f: fclean
-	$(CFLAGS) += -g -fsanitize=address
-	make all
+f: fclean	# $(CFLAGS) += -g -fsanitize=address
+
 .PHONY: re clean fclean all

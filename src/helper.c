@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 15:45:29 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:18:05 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,15 @@ void	terminate_game(t_game *game, t_img *images)
 {
 	free_images(game, images);
 	free_map(game);
-	mlx_terminate(game->mlx);
-	exit(1);
 }
 
-void	check_input(int argc, char **argv)
+void	check_input(int argc, char **argv, t_game *game)
 {
 	size_t	filename;
 
 	if (argc != 2)
 	{
+		free(game->image);
 		ft_putendl_fd("error\nInvalid number of arguments", STDERR_FILENO);
 		exit(1);
 	}

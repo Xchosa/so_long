@@ -6,3 +6,5 @@
 *.mlx
 mlx
 .obj
+42-docker-container
+.devcontainer

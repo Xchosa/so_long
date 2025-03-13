@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 09:39:34 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 17:04:36 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:43:43 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,24 @@ void	free_images(t_game *game, t_img *images)
 	free(images);
 }
 
-
-void	gnl_exit(char *error_msg, int fd)
+void	gnl_exit(char *error_msg, char *joined_line, int fd)
 {
 	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(error_msg, STDERR_FILENO);
+	free(joined_line);
 	close(fd);
 	exit(1);
 }
 
-void	faild_split(char *error_msg, t_game *game)
+void	faild_split(char *error_msg, t_game *game, int fd)
 {
 	if (!game->copy_map)
 		free_map_copy(game);
 	if (!game->map)
 		free_map(game);
+	free(game->image);
 	ft_putendl_fd("Error", STDERR_FILENO);
 	ft_putendl_fd(error_msg, STDERR_FILENO);
+	close(fd);
 	exit(1);
 }

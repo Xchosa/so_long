@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:18:41 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 17:39:57 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:39 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_texture	texture;
-	atexit(leaks);
-
-	game.image = malloc(sizeof(t_img));
-	check_input (argc, argv);
+	// atexit(leaks);
+	check_input (argc, argv, &game);
 	get_map(argv[1], &game);
 	validate_map(&game);
 	render_map(&game, &texture);
@@ -29,5 +27,6 @@ int	main(int argc, char **argv)
 	mlx_terminate(game.mlx);
 	return (EXIT_SUCCESS);
 }
+// atexit(leaks);
+
 // free game->image if error 
-// ft_join in const

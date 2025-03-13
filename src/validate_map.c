@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 15:35:52 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:30:18 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,16 @@ bool	validate_edge(t_game *game, int x_max, int y_max)
 // validate_rectangular, and if map is surrounded by walls
 bool	validate_rectangular(t_game *game, int y_max )
 {
-	bool	bool_rectangular;
-	int		y;
-	int		current_row_length;
-	int		first_row_length;
+	bool		bool_rectangular;
+	int			y;
+	size_t		first_row_length;
 
 	bool_rectangular = true;
 	y = 0;
 	first_row_length = ft_strlen(game->map[0]);
 	while (y < y_max)
 	{
-		current_row_length = ft_strlen(game->map[y]);
-		if (current_row_length != first_row_length)
+		if ((ft_strlen(game->map[y])) != first_row_length)
 		{
 			return (bool_rectangular = false);
 		}

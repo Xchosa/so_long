@@ -6,14 +6,14 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 09:52:59 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/11 15:43:57 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:45:13 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/solong.h"
 #include "../mlx/include/MLX42/MLX42.h"
 
-void	validate_characters_general(char *joined_line)
+void	validate_characters_general(char *joined_line, int fd)
 {
 	int	i;
 
@@ -26,15 +26,16 @@ void	validate_characters_general(char *joined_line)
 		{
 			ft_printf ("Map with wrong input: %c\n", joined_line[i]);
 			free (joined_line);
+			close(fd);
 			exit(1);
 		}
 		i++;
 	}
-	count_player(joined_line);
+	count_player(joined_line, fd);
 	return ;
 }
 
-void	count_player(char *map_as_string)
+void	count_player(char *map_as_string, int fd)
 {
 	int	count_player;
 	int	i;
@@ -50,11 +51,13 @@ void	count_player(char *map_as_string)
 	if (count_player == 0)
 	{
 		free(map_as_string);
+		close(fd);
 		exit(ft_printf("Error \nNo player found"));
 	}
 	if (count_player == 2)
 	{
 		free(map_as_string);
+		close(fd);
 		exit(ft_printf("Error \n%d player found", count_player));
 	}
 }
