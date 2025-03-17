@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:22:10 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/13 14:15:57 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:37:58 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_escape_key(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		terminate_game(game, game->image);
-		return;
 	}
 }
 
@@ -91,6 +90,11 @@ void	set_player_nbr_moves(t_game *game, int new_x, int new_y)
 void	set_image_player(t_game *game, t_img *image, int new_x, int new_y )
 {
 	mlx_image_to_window(game->mlx, image->spirit, new_x * PIXEL, new_y * PIXEL);
+	game->map[game->player_yx[0]][game->player_yx[1]] = BACKGROUND;
+    game->map[new_y][new_x] = 'P';
+	
 	mlx_image_to_window(game->mlx, image->background,
 		game->player_yx[1] * PIXEL, game->player_yx[0] * PIXEL);
+
+		
 }

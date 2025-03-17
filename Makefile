@@ -6,7 +6,7 @@
 #    By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 10:50:48 by poverbec          #+#    #+#              #
-#    Updated: 2025/03/13 16:43:53 by poverbec         ###   ########.fr        #
+#    Updated: 2025/03/17 12:53:12 by poverbec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME 	= so_long
 CC		= cc
 #CFLAGS	= -Wall -Wextra -Werror -g -I inc/ -ldl -lglfw -pthread -lm
-CFLAGS  = -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
-# CFLAGS	= -Wall -Wextra -Werror -g -I inc/
+#CFLAGS  = -Wall -Wextra -Werror -g -I inc/ -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -I inc/
 LIBFT	= ./libft/libft.a
 MLX_DIR = ./mlx
 
@@ -26,27 +26,28 @@ MLX 	=	$(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 # ---------- Linux compiling ---------- #
 
-OBJ_DIR = obj/
+OBJ_DIR = obj
 BIN_DIR = bin/
 SOURCE_DIR = src/
 
 # ---------- Subjects ---------- #
 MY_SOURCES = \
-			$(SOURCE_DIR)main.c \
-			$(SOURCE_DIR)fill_map.c \
-			$(SOURCE_DIR)images_to_struct.c \
-			$(SOURCE_DIR)validate_map.c \
-			$(SOURCE_DIR)valid_map_string.c \
-			$(SOURCE_DIR)validate_path.c \
-			$(SOURCE_DIR)validate_error.c \
-			$(SOURCE_DIR)move_player.c \
-			$(SOURCE_DIR)bonus.c \
-			$(SOURCE_DIR)helper.c 
+			fill_map.c \
+			main.c \
+			images_to_struct.c \
+			validate_map.c \
+			valid_map_string.c \
+			validate_path.c \
+			validate_error.c \
+			move_player.c \
+			bonus.c \
+			helper.c 
 			
-			
+vpath %.c $(SOURCE_DIR)	
+
 # ---------- Objects ---------- #
 
-MY_OBJECTS=$(MY_SOURCES:$(SOURCE_DIR)%.c=$(OBJ_DIR)%.o)
+MY_OBJECTS := $(addprefix $(OBJ_DIR)/, $(MY_SOURCES:.c=.o))
 
 
 # ---------- COLORS AND STUFF ---------- #
@@ -60,13 +61,14 @@ Red = \033[0;31m
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SOURCE_DIR)%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+	echo test
 	
-$(NAME): checkMLX $(MY_OBJECTS) $(LIBFT)
+$(NAME): checkMLX $(LIBFT) $(MY_OBJECTS)
 	@echo "$(BIYellow) Compiling $(NAME) $(Color_Off)"
 	@$(CC) $(CFLAGS) $(MY_OBJECTS) $(LIBFT) -o $(NAME) $(MLX)
 	@if [ -f $(NAME) ]; then \
@@ -100,13 +102,11 @@ checkMLX:
     fi
 			
 
-
-
 clean:
 	@echo "$(Yellow)-----Removing Object Files--------$(Color_Off)"
 	@rm -rf $(OBJ_DIR) $(BIN_DIR)
 	make -C libft fclean
-	@rm -rf $(LIBMLX)/build
+	@rm -rf $(MLX_DIR)/build
 
 fclean: clean
 	@echo "$(On_Yellow)Removing Executables...$(Color_Off)"
@@ -115,14 +115,12 @@ fclean: clean
 	make -C libft fclean
 	@rm -rf $(MLX_DIR)
 
-re: fclean all
-
-#norm:
-#	@cd src && norminette | grep "Error:" | wc -l
-#norminette: norm
+re: 
+	$(MAKE) fclean
+	$(MAKE) all
 
 # f: fclean
 # f: CFLAGS += -g -fsanitize=address
 f: fclean	# $(CFLAGS) += -g -fsanitize=address
 
-.PHONY: re clean fclean all
+.PHONY: re clean fclean all checkMLX test

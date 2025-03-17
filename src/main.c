@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:18:41 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:39 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:08:58 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 {
 	t_game		game;
 	t_texture	texture;
-	// atexit(leaks);
+
 	check_input (argc, argv, &game);
 	get_map(argv[1], &game);
 	validate_map(&game);
@@ -28,5 +28,3 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 // atexit(leaks);
-
-// free game->image if error 

@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 14:20:25 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/13 14:18:05 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 09:40:26 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	terminate_game(t_game *game, t_img *images)
 {
 	free_images(game, images);
 	free_map(game);
+	mlx_terminate(game->mlx);
+	exit (1);
 }
 
 void	check_input(int argc, char **argv, t_game *game)

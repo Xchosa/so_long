@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:09:47 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/13 15:23:39 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:00:49 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ void	get_map(char *map_name, t_game *game)
 		tmp = ft_strdup(joined_line);
 		free(joined_line);
 		joined_line = ft_strjoin(tmp, map_line);
+		free(tmp);
 		free(map_line);
 		map_line = get_next_line(fd);
 		game->y++;
-		printf("%s | ", joined_line);
-		printf("%p \n", joined_line);
 	}
 	validate_characters_general(joined_line, fd);
 	fill_stack(joined_line, game, fd);

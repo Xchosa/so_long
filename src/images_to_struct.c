@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 09:58:28 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/13 15:21:19 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:06:12 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	fill_texture_image(t_texture *texture, t_game *game)
 {
 	game->image = malloc(sizeof(t_img));
 	if (!game->image)
-    {
-        ft_printf("Failed to allocate memory for game->image");
-        exit(1);
-    }
+	{
+		ft_printf("Failed to allocate memory for game->image");
+		exit(1);
+	}
 	texture->background = mlx_load_png("./img/background_star.png");
 	texture->wall = mlx_load_png("./img/star_space.png");
 	texture->collectives = mlx_load_png("./img/R2_D2.png");
@@ -74,10 +74,10 @@ void	render_map(t_game *game, t_texture *texture)
 	y = 0;
 	game->mlx = mlx_init(PIXEL * game->x, PIXEL * game->y, "so_long", false);
 	if (!game->mlx)
-    {
-        ft_printf("Error \nFailed to initialize MLX");
-        exit(EXIT_FAILURE);
-    }
+	{
+		validate_error_map("Failed to initialize MLX", game);
+		exit(EXIT_FAILURE);
+	}
 	fill_texture_image(texture, game);
 	while (game->map[y])
 	{
