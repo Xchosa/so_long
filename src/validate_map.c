@@ -6,7 +6,7 @@
 /*   By: poverbec <poverbec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:33:45 by poverbec          #+#    #+#             */
-/*   Updated: 2025/03/17 12:51:51 by poverbec         ###   ########.fr       */
+/*   Updated: 2025/03/17 13:17:24 by poverbec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ bool	validate_rectangular(t_game *game, int y_max )
 	first_row_length = ft_strlen(game->map[0]);
 	while (y < y_max)
 	{
-		if (game->map[y] == NULL || (ft_strlen(game->map[y] ))
+		if (game->map[y] == NULL || (ft_strlen(game->map[y]))
 			!= first_row_length)
 		{
 			return (bool_rectangular = false);
